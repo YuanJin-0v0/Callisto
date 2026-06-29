@@ -23,6 +23,7 @@ pub fn run() {
 
     tauri::Builder::default()
         .manage(database)
+        .plugin(tauri_plugin_dialog::init())
         .setup(|app| {
             position_pet_window(app);
             Ok(())
@@ -44,6 +45,23 @@ pub fn run() {
             commands::novel::delete_chapter,
             commands::novel::get_inspirations,
             commands::novel::create_inspiration,
+            commands::reader::get_reading_books,
+            commands::reader::import_book,
+            commands::reader::delete_reading_book,
+            commands::reader::read_book_content,
+            commands::reader::update_reading_progress,
+            commands::reader::get_bookmarks,
+            commands::reader::create_bookmark,
+            commands::reader::boss_key_hide,
+            commands::reader::boss_key_show,
+            commands::music::scan_music_directory,
+            commands::music::read_audio_file,
+            commands::tracker::start_session,
+            commands::tracker::stop_session,
+            commands::tracker::get_time_stats,
+            commands::tracker::start_pomodoro,
+            commands::tracker::complete_pomodoro,
+            commands::tracker::get_foreground_process,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
