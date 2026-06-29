@@ -1,87 +1,93 @@
-# Callisto --- AI Work Log
+# Callisto — AI Work Log
 
-> ACG \\u4e2a\\u4eba\\u7a7a\\u95f4\\u684c\\u9762\\u5e94\\u7528 | \\u50cf\\u7d20\\u98ce | \\u684c\\u5ba0 + \\u4eea\\u8868\\u76d8\\u53cc\\u6a21\\u5f0f
-> \\u9879\\u76ee\\u8def\\u5f84: C:\\Users\\EDY\\Desktop\\Callisto (\\u672c\\u5730\\u5f00\\u53d1\\u7528\\uff0c\\u5b8c\\u6210\\u540e\\u79fb\\u81f3 USB)
+> ACG 个人空间桌面应用 | 像素风 | 桌宠 + 仪表盘双模式
+> 项目路径: `C:\Users\EDY\Desktop\Callisto` (本地开发用，完成后移至 USB)
 
-## \\u5f53\\u524d\\u76ee\\u6807
-\\u5b8c\\u6210 Tauri 2 + React \\u9879\\u76ee\\u811a\\u624b\\u67b6\\uff0c\\u5b9e\\u73b0\\u57fa\\u7840\\u6846\\u67b6\\u53ef\\u8fd0\\u884c\\u3002
-- [x] Vite + React 19 + TypeScript \\u521d\\u59cb\\u5316
-- [x] Tauri 2 Rust \\u540e\\u7aef\\u811a\\u624b\\u67b6
-- [x] \\u5e94\\u7528\\u56fe\\u6807\\u751f\\u6210
-- [ ] Rust \\u7f16\\u8bd1\\u9a8c\\u8bc1
-- [ ] npm \\u8fd0\\u884c\\u9a8c\\u8bc1
+## 当前目标
 
-## \\u6280\\u672f\\u6808\\u51b3\\u7b56
-| \\u5c42 | \\u6280\\u672f | \\u539f\\u56e0 |
+完成 Tauri 2 + React 项目脚手架，实现基础框架可运行。
+- [x] Vite + React 19 + TypeScript 初始化
+- [x] Tauri 2 Rust 后端脚手架
+- [x] 应用图标生成
+- [x] Rust 编译验证
+- [x] Tauri 完整构建验证 (release)
+- [ ] 下一步: 实现桌宠核心
+
+## 技术栈决策
+
+| 层 | 技术 | 原因 |
 |---|---|---|
-| \\u684c\\u9762\\u6846\\u67b6 | Tauri 2 | \\u539f\\u751f\\u6027\\u80fd\\uff0c<30MB \\u4e8c\\u8fdb\\u5236 |
-| \\u524d\\u7aef | React 19 + TypeScript + Vite | \\u751f\\u6001\\u6210\\u719f |
-| \\u540e\\u7aef | Rust | \\u6027\\u80fd\\u3001\\u5b89\\u5168\\u6027 |
-| \\u6570\\u636e\\u5e93 | SQLite (rusqlite) | \\u4fbf\\u643a\\u3001\\u96f6\\u914d\\u7f6e |
-| \\u50cf\\u7d20 UI | \\u81ea\\u5b9a\\u4e49 CSS (retro8-ui \\u98ce\\u683c) | \\u4e3b\\u9898\\u7edf\\u4e00 |
-| \\u72b6\\u6001\\u7ba1\\u7406 | Zustand | \\u8f7b\\u91cf\\u3001TypeScript \\u53cb\\u597d |
-| \\u8def\\u7531 | react-router | \\u6807\\u51c6\\u65b9\\u6848 |
-| \\u56fe\\u8868 | Chart.js \\u6216 uPlot | \\u8f7b\\u91cf |
+| 桌面框架 | Tauri 2 | 原生性能，<30MB 二进制 |
+| 前端 | React 19 + TypeScript + Vite | 生态成熟 |
+| 后端 | Rust | 性能、安全性 |
+| 数据库 | SQLite (rusqlite) | 便携、零配置 |
+| 像素 UI | 自定义 CSS (retro8-ui 风格) | 主题统一 |
+| 状态管理 | Zustand | 轻量、TypeScript 友好 |
+| 路由 | react-router | 标准方案 |
+| 图表 | Chart.js 或 uPlot | 轻量 |
 
-## \\u529f\\u80fd\\u6a21\\u5757\\u4e0e\\u72b6\\u6001
-| \\u6a21\\u5757 | \\u4f18\\u5148\\u7ea7 | \\u72b6\\u6001 | \\u8bf4\\u660e |
+## 功能模块与状态
+
+| 模块 | 优先级 | 状态 | 说明 |
 |---|---|---|---|
-| \\u9879\\u76ee\\u811a\\u624b\\u67b6 | P0 | \\u8fdb\\u884c\\u4e2d | Tauri 2 + React \\u521d\\u59cb\\u5316\\u5b8c\\u6210\\uff0c\\u7f16\\u8bd1\\u9a8c\\u8bc1\\u4e2d |
-| \\u684c\\u5ba0\\u6838\\u5fc3 | P0 | \\u672a\\u5f00\\u59cb | NekoAI \\u98ce\\u683c\\u7cbe\\u7075\\u5f15\\u64ce |
-| \\u756a\\u5267/\\u5f71\\u89c6/\\u6e38\\u620f\\u8ffd\\u8e2a | P0 | \\u672a\\u5f00\\u59cb | Bangumi/AniList \\u5143\\u6570\\u636e |
-| \\u5c0f\\u8bf4\\u5199\\u4f5c | P0 | \\u672a\\u5f00\\u59cb | WorldForge \\u7075\\u611f |
-| \\u5c0f\\u8bf4\\u9605\\u8bfb + Boss Key | P0 | \\u672a\\u5f00\\u59cb | EPUB/TXT/PDF |
-| \\u97f3\\u4e50\\u64ad\\u653e\\u5668 | P0 | \\u672a\\u5f00\\u59cb | \\u684c\\u9762\\u6b4c\\u8bcd + \\u53ef\\u89c6\\u5316 |
-| \\u65f6\\u957f\\u7edf\\u8ba1\\u5f15\\u64ce | P1 | \\u672a\\u5f00\\u59cb | \\u6e38\\u620f/\\u542c\\u6b4c/\\u9605\\u8bfb/\\u756a\\u8304\\u949f |
-| \\u5ba0\\u7269\\u611f\\u77e5\\u7cfb\\u7edf | P1 | \\u672a\\u5f00\\u59cb | \\u6d3b\\u52a8\\u68c0\\u6d4b + \\u6e38\\u620f\\u6a21\\u5f0f |
-| \\u6570\\u636e\\u5206\\u4eab/\\u5bfc\\u51fa | P2 | \\u672a\\u5f00\\u59cb | \\u9690\\u79c1\\u5361\\u7247 |
-| \\u50cf\\u7d20\\u8349\\u5730\\u524d\\u666f | P2 | \\u672a\\u5f00\\u59cb | Elliot \\u98ce\\u683c\\u88c5\\u9970 |
-| \\u5185\\u5b58\\u4f18\\u5316 | P2 | \\u672a\\u5f00\\u59cb | \\u5e7d\\u7075\\u6a21\\u5f0f\\u7b49 |
+| 项目脚手架 | P0 | **完成** | Tauri 2 + React 初始化完成, 构建成功 |
+| 桌宠核心 | P0 | 未开始 | NekoAI 风格精灵引擎 |
+| 番剧/影视/游戏追踪 | P0 | 未开始 | Bangumi/AniList 元数据 |
+| 小说写作 | P0 | 未开始 | WorldForge 灵感 |
+| 小说阅读 + Boss Key | P0 | 未开始 | EPUB/TXT/PDF |
+| 音乐播放器 | P0 | 未开始 | 桌面歌词 + 可视化 |
+| 时长统计引擎 | P1 | 未开始 | 游戏/听歌/阅读/番茄钟 |
+| 宠物感知系统 | P1 | 未开始 | 活动检测 + 游戏模式 |
+| 数据分享/导出 | P2 | 未开始 | 隐私卡片 |
+| 像素草地前景 | P2 | 未开始 | Elliot 风格装饰 |
+| 内存优化 | P2 | 未开始 | 幽灵模式等 |
 
-## \\u53c2\\u8003\\u9879\\u76ee
-- **AniMeow**: Flutter \\u8ffd\\u756a app\\uff0cBangumi/AniList \\u53cc\\u6e90\\u3001\\u65e5\\u5386\\u63d0\\u9192\\u3001\\u7edf\\u8ba1\\u3001Excel \\u5bfc\\u5165\\u5bfc\\u51fa
-- **NekoAI**: Tauri \\u684c\\u5ba0\\uff0c\\u5e26 AI \\u804a\\u5929
-- **WorldForge**: Tauri \\u5c0f\\u8bf4\\u5199\\u4f5c\\uff0c\\u7075\\u611f/\\u89d2\\u8272/\\u4e16\\u754c\\u89c2/\\u4f0f\\u7b14\\u6a21\\u5757
-- **murmur**: PWA \\u5c0f\\u8bf4\\u5199\\u4f5c studio
-- **ncmc**: Rust .ncm \\u89e3\\u5bc6\\u5de5\\u5177
-- **retro8-ui**: \\u50cf\\u7d20\\u98ce CSS \\u6846\\u67b6
+## 参考项目
 
-## \\u67b6\\u6784\\u8981\\u70b9
-`
+- **AniMeow**: Flutter 追番 app，Bangumi/AniList 双源、日历提醒、统计、Excel 导入导出
+- **NekoAI**: Tauri 桌宠，带 AI 聊天
+- **WorldForge**: Tauri 小说写作，灵感/角色/世界观/伏笔模块
+- **murmur**: PWA 小说写作 studio
+- **ncmc**: Rust .ncm 解密工具
+- **retro8-ui**: 像素风 CSS 框架
+
+## 架构要点
+
+```
 Callisto/
-\\u251c\\u2500\\u2500 src/                  # React \\u524d\\u7aef
-\\u2502   \\u251c\\u2500\\u2500 components/       # \\u5171\\u4eab\\u7ec4\\u4ef6
-\\u2502   \\u251c\\u2500\\u2500 pages/            # \\u9875\\u9762\\uff08\\u8def\\u7531\\u61d2\\u52a0\\u8f7d\\uff09
-\\u2502   \\u251c\\u2500\\u2500 stores/           # Zustand stores
-\\u2502   \\u251c\\u2500\\u2500 hooks/            # \\u81ea\\u5b9a\\u4e49 hooks
-\\u2502   \\u251c\\u2500\\u2500 styles/           # \\u5168\\u5c40\\u6837\\u5f0f\\uff08\\u50cf\\u7d20\\u98ce\\uff09
-\\u2502   \\u251c\\u2500\\u2500 types/            # TypeScript \\u7c7b\\u578b
-\\u2502   \\u2514\\u2500\\u2500 App.tsx
-\\u251c\\u2500\\u2500 src-tauri/            # Rust \\u540e\\u7aef
-\\u2502   \\u251c\\u2500\\u2500 src/
-\\u2502   \\u2502   \\u251c\\u2500\\u2500 main.rs       # \\u5165\\u53e3
-\\u2502   \\u2502   \\u251c\\u2500\\u2500 lib.rs        # Tauri setup
-\\u2502   \\u2502   \\u251c\\u2500\\u2500 commands/     # Tauri commands
-\\u2502   \\u2502   \\u251c\\u2500\\u2500 db/           # \\u6570\\u636e\\u5e93
-\\u2502   \\u2502   \\u251c\\u2500\\u2500 tracker/      # \\u65f6\\u957f\\u7edf\\u8ba1
-\\u2502   \\u2502   \\u251c\\u2500\\u2500 monitor/      # \\u8fdb\\u7a0b/\\u6d3b\\u52a8\\u68c0\\u6d4b
-\\u2502   \\u2502   \\u2514\\u2500\\u2500 audio/        # \\u97f3\\u9891\\u5904\\u7406
-\\u2502   \\u251c\\u2500\\u2500 Cargo.toml
-\\u2502   \\u251c\\u2500\\u2500 tauri.conf.json
-\\u2502   \\u2514\\u2500\\u2500 icons/
-\\u251c\\u2500\\u2500 package.json
-\\u251c\\u2500\\u2500 AGENTS.md
-\\u2514\\u2500\\u2500 ARCHITECTURE.md
-`
+├── src/                  # React 前端
+│   ├── components/       # 共享组件 (ui/ layout/ pet/)
+│   ├── pages/            # 页面（路由懒加载）
+│   ├── stores/           # Zustand stores
+│   ├── hooks/            # 自定义 hooks
+│   ├── styles/           # 全局样式（像素风）
+│   └── types/            # TypeScript 类型
+├── src-tauri/            # Rust 后端
+│   ├── src/
+│   │   ├── main.rs       # 入口
+│   │   ├── lib.rs        # Tauri setup + commands
+│   │   ├── commands/     # (计划) Tauri commands
+│   │   ├── db/           # (计划) 数据库
+│   │   ├── tracker/      # (计划) 时长统计
+│   │   ├── monitor/      # (计划) 进程/活动检测
+│   │   └── audio/        # (计划) 音频处理
+│   ├── Cargo.toml
+│   └── tauri.conf.json
+├── AGENTS.md             # AI 工作日志
+└── ARCHITECTURE.md       # 架构设计
+```
 
-## \\u5173\\u952e\\u7ea6\\u5b9a
-- \\u540e\\u7aef Rust \\u5904\\u7406\\u6240\\u6709\\u91cd\\u91cf\\u7ea7\\u64cd\\u4f5c\\uff1aDB\\u3001\\u8fdb\\u7a0b\\u68c0\\u6d4b\\u3001\\u6587\\u4ef6 I/O
-- \\u524d\\u7aef React \\u53ea\\u8d1f\\u8d23\\u6e32\\u67d3\\u548c\\u7528\\u6237\\u4ea4\\u4e92
-- \\u6240\\u6709\\u6570\\u636e\\u5b58\\u50a8\\u4e8e SQLite\\uff0c\\u8def\\u5f84\\u53ef\\u914d\\u7f6e\\uff08USB \\u4fbf\\u643a\\uff09
-- \\u50cf\\u7d20\\u98ce\\u989c\\u8272\\uff1a#2b1b17\\uff08\\u6df1\\u68d5\\uff09\\u3001#8b6b4a\\uff08\\u6696\\u68d5\\uff09\\u3001#d4a574\\uff08\\u7c73\\u8272\\uff09\\u3001#f0d5b0\\uff08\\u6d45\\u7c73\\uff09\\u3001#c0775a\\uff08\\u9508\\u7ea2\\uff09
-- \\u4e0d\\u6dfb\\u52a0\\u591a\\u4f59\\u6ce8\\u91ca\\uff08\\u9664\\u975e\\u5fc5\\u8981\\uff09
+## 关键约定
 
-## \\u6700\\u8fd1\\u64cd\\u4f5c
-- 2026-06-29: \\u9879\\u76ee\\u811a\\u624b\\u67b6\\u5b8c\\u6210 - Vite + React + Tauri 2 + \\u56fe\\u6807\\u751f\\u6210
-- 2026-06-29: AGENTS.md + ARCHITECTURE.md \\u521b\\u5efa
-- 2026-06-29: \\u65f6\\u957f\\u7edf\\u8ba1\\u4e0e\\u5ba0\\u7269\\u611f\\u77e5\\u7cfb\\u7edf\\u8bbe\\u8ba1\\u6587\\u6863\\u5b8c\\u6210
+- 后端 Rust 处理所有重量级操作：DB、进程检测、文件 I/O
+- 前端 React 只负责渲染和用户交互
+- 所有数据存储于 SQLite，路径可配置（USB 便携）
+- 像素风颜色：#2b1b17（深棕）、#8b6b4a（暖棕）、#d4a574（米色）、#f0d5b0（浅米）、#c0775a（锈红）
+- 不添加多余注释（除非必要）
+
+## 最近操作
+
+- 2026-06-29: 项目脚手架完成 - Vite + React + Tauri 2 + 图标生成, 构建成功
+- 2026-06-29: AGENTS.md + ARCHITECTURE.md 创建
+- 2026-06-29: 时长统计与宠物感知系统设计文档 (E:\Temp\opencode\时长统计与互动系统.md)
+- 2026-06-29: Git init + first commit
