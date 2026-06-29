@@ -34,6 +34,16 @@ pub fn run() {
             commands::anime::delete_media_item,
             commands::anime::get_media_stats,
             commands::anime::import_from_bangumi,
+            commands::novel::get_novels,
+            commands::novel::create_novel,
+            commands::novel::update_novel,
+            commands::novel::delete_novel,
+            commands::novel::get_chapters,
+            commands::novel::create_chapter,
+            commands::novel::update_chapter,
+            commands::novel::delete_chapter,
+            commands::novel::get_inspirations,
+            commands::novel::create_inspiration,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
