@@ -1,9 +1,8 @@
-use tauri::{Manager, PhysicalPosition};
+mod commands;
+mod db;
 
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! Welcome to Callisto.", name)
-}
+use db::Database;
+use tauri::{Manager, PhysicalPosition};
 
 fn position_pet_window(app: &tauri::App) {
     if let Some(monitor) = app.primary_monitor().ok().flatten() {
@@ -19,12 +18,23 @@ fn position_pet_window(app: &tauri::App) {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let database = Database::new().expect("Failed to initialize database");
+    database.initialize().expect("Failed to run migrations");
+
     tauri::Builder::default()
+        .manage(database)
         .setup(|app| {
             position_pet_window(app);
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![
+            commands::anime::get_media_list,
+            commands::anime::create_media_item,
+            commands::anime::update_media_item,
+            commands::anime::delete_media_item,
+            commands::anime::get_media_stats,
+            commands::anime::import_from_bangumi,
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
